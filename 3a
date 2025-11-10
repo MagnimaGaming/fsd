@@ -1,32 +1,36 @@
-// Import express
-const express = require("express");
-const app = express();
-
-// Set EJS as the templating engine
-app.set("view engine", "ejs");
-
-// Define a route
-app.get("/", (req, res) => {
-  // Sending data to EJS template
-  const data = { name: "Ganesh_J", course: "Full Stack Development" };
-  res.render("index", data);
-});
-
-// Start the server
-app.listen(3000, () => {
-  console.log("Server is running on http://localhost:3000");
-});
-
-
-views -> index.ejs
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Express EJS Example</title>
-</head>
-<body style="text-align:center; font-family:Arial;">
-  <h1>Welcome to ExpressJS with EJS!</h1>
-  <h2>Hello <%= name %> 👋</h2>
-  <p>Course: <%= course %></p>
-</body>
+const express = require('express'); 
+const app = express(); 
+const path = require('path'); 
+app.set('view engine', 'ejs'); 
+app.set('views', path.join(__dirname, 'views')); 
+app.get('/', (req, res) => { 
+    res.render('index', { title: 'Home Page', message: 'Welcome to EJS Templating!' }); 
+}); 
+app.get('/about', (req, res) => { 
+    res.render('about', { title: 'About Us', description: 'This is the about page rendered using EJS.' }); 
+}); 
+app.listen(3000, () => { 
+    console.log('Server running on http://localhost:3000'); 
+}); 
+about.ejs: 
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <title><%= title %></title> 
+</head> 
+<body> 
+    <h1><%= description %></h1> 
+    <p><a href="/">Back to Home</a></p> 
+</body> 
+</html> 
+index.ejs: 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<title><%= title %></title> 
+</head> 
+<body> 
+<h1><%= message %></h1> 
+<p><a href="/about">Go to About Page</a></p> 
+</body> 
 </html>
