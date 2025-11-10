@@ -1,0 +1,25 @@
+import React from "react";
+
+function App() {
+  // Step 1: Writing markup using JSX
+  const title = "React JSX Example";
+  const user = { name: "Ganesh_J", course: "Full Stack Development" };
+
+  // Step 2: Return JSX markup
+  return (
+    <div style={{ textAlign: "center", marginTop: "40px" }}>
+      <h1>{title}</h1>
+      <p>This markup is written using <b>JSX syntax</b>.</p>
+
+      <h3>User Details:</h3>
+      <ul style={{ listStyleType: "none" }}>
+        <li><b>Name:</b> {user.name}</li>
+        <li><b>Course:</b> {user.course}</li>
+      </ul>
+
+      <p>Current Year: {new Date().getFullYear()}</p>
+    </div>
+  );
+}
+
+export default App;
