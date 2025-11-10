@@ -1,0 +1,35 @@
+import React from "react";
+
+// Step 1: Child Component (Receives Data using props)
+function Child(props) {
+  return (
+    <div>
+      <h3>Child Component</h3>
+      <p>Message from Parent: {props.message}</p>
+    </div>
+  );
+}
+
+// Step 2: Parent Component (Sends Data to Child)
+function Parent() {
+  const data = "Hello from Parent Component!"; // data to share
+
+  return (
+    <div>
+      <h2>Parent Component</h2>
+      <Child message={data} />  {/* Passing data using props */}
+    </div>
+  );
+}
+
+// Step 3: Main App Component
+function App() {
+  return (
+    <div>
+      <h1>Data Sharing Between Components</h1>
+      <Parent />
+    </div>
+  );
+}
+
+export default App;
