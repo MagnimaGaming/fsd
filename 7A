@@ -1,0 +1,30 @@
+import React, { useState } from "react";
+
+function App() {
+  // Step 1: Create a state variable
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Step 2: Function to toggle login state
+  const handleLogin = () => {
+    setIsLoggedIn(!isLoggedIn);
+  };
+
+  // Step 3: Conditional Rendering using ternary operator
+  return (
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <h1>React Conditional Rendering Example</h1>
+
+      {isLoggedIn ? (
+        <h2>Welcome, Ganesh_J 🎉</h2>
+      ) : (
+        <h2>Please Login to Continue</h2>
+      )}
+
+      <button onClick={handleLogin}>
+        {isLoggedIn ? "Logout" : "Login"}
+      </button>
+    </div>
+  );
+}
+
+export default App;
