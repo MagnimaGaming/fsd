@@ -1,0 +1,43 @@
+import React, { useState } from "react";
+
+// Step 1: Child Component (receives data via props)
+function Child(props) {
+  return (
+    <div>
+      <h3>Child Component</h3>
+      <p>Message from Parent: {props.msg}</p>
+    </div>
+  );
+}
+
+// Step 2: Parent Component (uses state and passes props)
+function Parent() {
+  const [count, setCount] = useState(0); // declare state variable
+
+  const handleClick = () => {
+    setCount(count + 1); // update state when button is clicked
+  };
+
+  return (
+    <div>
+      <h2>Parent Component</h2>
+      <p>Count Value: {count}</p>
+      <button onClick={handleClick}>Increase Count</button>
+
+      {/* Passing props to child */}
+      <Child msg="Props Example from Parent!" />
+    </div>
+  );
+}
+
+// Step 3: Main App Component
+function App() {
+  return (
+    <div>
+      <h1>ReactJS Props and State Example</h1>
+      <Parent />
+    </div>
+  );
+}
+
+export default App;
