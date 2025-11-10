@@ -1,0 +1,27 @@
+// Step 1: Import Express
+const express = require("express");
+const app = express();
+
+// Step 2: Create a middleware function
+const myLogger = (req, res, next) => {
+  console.log("Middleware executed at:", new Date().toLocaleTimeString());
+  console.log("Request URL:", req.url);
+  next(); // Continue to the next route
+};
+
+// Step 3: Use middleware in app
+app.use(myLogger);
+
+// Step 4: Define routes
+app.get("/", (req, res) => {
+  res.send("Home Page - Middleware already executed!");
+});
+
+app.get("/about", (req, res) => {
+  res.send("About Page - Middleware works here too!");
+});
+
+// Step 5: Start the server
+app.listen(3000, () => {
+  console.log("Server running at http://localhost:3000");
+});
