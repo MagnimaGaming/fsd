@@ -1,0 +1,49 @@
+CREATE
+// Switch to database
+use collegeDB;
+
+// Insert one document
+db.students.insert({
+  name: "Ganesh_J",
+  age: 21,
+  course: "Full Stack Development",
+  marks: 85
+});
+
+// Insert multiple documents
+db.students.insertMany([
+  { name: "Ravi", age: 22, course: "Java", marks: 90 },
+  { name: "Teja", age: 20, course: "Python", marks: 88 }
+]);
+
+READ
+// Find all documents
+db.students.find();
+
+// Find specific document
+db.students.find({ name: "Ganesh_J" });
+
+// Find with condition
+db.students.find({ marks: { $gt: 80 } });
+
+
+UPDATE 
+// Update one document
+db.students.update(
+  { name: "Ganesh_J" },                   // condition
+  { $set: { marks: 95 } }                 // new value
+);
+
+// Update multiple documents
+db.students.updateMany(
+  { course: "Python" },
+  { $set: { course: "Advanced Python" } }
+);
+
+
+REMOVE
+// Remove one document
+db.students.remove({ name: "Ravi" });
+
+// Remove all documents
+db.students.remove({});
