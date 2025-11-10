@@ -1,0 +1,22 @@
+import React from "react";
+
+function App() {
+  // Step 1: Create an array of data
+  const students = ["Ganesh_J", "Ravi", "Teja", "Kiran"];
+
+  // Step 2: Use map() to display list items
+  return (
+    <div style={{ textAlign: "center", marginTop: "40px" }}>
+      <h1>React List Rendering Example</h1>
+      <h3>Student Names:</h3>
+
+      <ul style={{ listStyleType: "none" }}>
+        {students.map((name, index) => (
+          <li key={index}>{index + 1}. {name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default App;
