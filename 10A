@@ -1,0 +1,26 @@
+import React, { Component } from "react";
+
+// Step 1: Functional Component
+function FunctionComponent() {
+  return <h3>This is a Functional Component ✅</h3>;
+}
+
+// Step 2: Class Component
+class ClassComponent extends Component {
+  render() {
+    return <h3>This is a Class Component 🧩</h3>;
+  }
+}
+
+// Step 3: Parent Component (Nesting both inside)
+function App() {
+  return (
+    <div style={{ textAlign: "center", marginTop: "40px" }}>
+      <h1>React Components Example</h1>
+      <FunctionComponent />  {/* Nested Functional Component */}
+      <ClassComponent />     {/* Nested Class Component */}
+    </div>
+  );
+}
+
+export default App;
