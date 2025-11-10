@@ -1,0 +1,22 @@
+import React, { useState } from "react";
+
+function App() {
+  // Step 1: Create a state variable
+  const [message, setMessage] = useState("Click the button to see a message!");
+
+  // Step 2: Define event handler function
+  const handleClick = () => {
+    setMessage("Hello Ganesh_J 👋 You clicked the button!");
+  };
+
+  // Step 3: Render JSX with event
+  return (
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <h1>React Event Handling Example</h1>
+      <p>{message}</p>
+      <button onClick={handleClick}>Click Me</button>
+    </div>
+  );
+}
+
+export default App;
