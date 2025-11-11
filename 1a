@@ -1,0 +1,34 @@
+const express = require('express');
+const app = express();
+
+app.use(express.json());
+
+// 1️⃣ Basic route
+app.get('/', (req, res) => {
+  res.send('<h2>Welcome to Express Routing Example</h2>');
+});
+
+// 2️⃣ Route Parameters (example: /user/101)
+app.get('/user/:id', (req, res) => {
+  const userId = req.params.id;
+  res.send(`USERID from route parameter: ${userId}`);
+});
+
+// 3️⃣ Query Parameters (example: /search?term=node&category=backend)
+app.get('/search', (req, res) => {
+  const { term, category } = req.query;
+  res.send(`You searched for term=${term}, category=${category}`);
+});
+
+// 4️⃣ URL Building Example
+app.get('/build-url', (req, res) => {
+  const userId = 101;
+  const url = `/profile/${userId}?show=summary`;
+  res.send(`<a href="${url}">Go to profile</a>`);
+});
+
+// 5️⃣ Start Server
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
