@@ -1,0 +1,65 @@
+// Import mongoose
+const mongoose = require("mongoose");
+
+// Connect to MongoDB
+mongoose.connect("mongodb://localhost:27017/testdb")
+  .then(() => console.log("✅ Connected to MongoDB"))
+  .catch(err => console.error(err));
+
+// Define a simple schema
+const userSchema = new mongoose.Schema({
+  name: String,
+  age: Number,
+  city: String
+});
+
+// Create an index on 'name'
+userSchema.index({ name: 1 });
+
+// Create a model
+const User = mongoose.model("User", userSchema);
+
+// Main function
+async function runQueries() {
+  // 1️⃣ Insert sample data
+  await User.deleteMany({});
+  await User.insertMany([
+    { name: "Alice", age: 25, city: "Delhi" },
+    { name: "Bob", age: 30, city: "Mumbai" },
+    { name: "Charlie", age: 22, city: "Chennai" },
+    { name: "David", age: 28, city: "Pune" },
+    { name: "Eve", age: 35, city: "Delhi" }
+  ]);
+  console.log("✅ Sample data inserted");
+
+  // 2️⃣ find() – Get all users from Delhi
+  const delhiUsers = await User.find({ city: "Delhi" });
+  console.log("\nUsers from Delhi:");
+  console.log(delhiUsers);
+
+  // 3️⃣ limit() – Get only 2 users
+  const twoUsers = await User.find().limit(2);
+  console.log("\nOnly 2 users:");
+  console.log(twoUsers);
+
+  // 4️⃣ sort() – Sort users by age (ascending)
+  const sortedUsers = await User.find().sort({ age: 1 });
+  console.log("\nUsers sorted by age:");
+  console.log(sortedUsers);
+
+  // 5️⃣ createIndex() – Already created with schema.index()
+  await User.createIndexes();
+  console.log("\n✅ Index created on 'name' field");
+
+  // 6️⃣ aggregate() – Get average age by city
+  const avgAge = await User.aggregate([
+    { $group: { _id: "$city", avgAge: { $avg: "$age" } } }
+  ]);
+  console.log("\nAverage age by city:");
+  console.log(avgAge);
+
+  // Close connection
+  mongoose.connection.close();
+}
+
+runQueries();
