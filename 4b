@@ -9,12 +9,20 @@ function App() {
     setMessage("Hello Ganesh_J 👋 You clicked the button!");
   };
 
+
+  const handleClick2 = () => {
+    setMessage("Hello Ganesh_J ????????????????????👋 You clicked the button!");
+  };
+
   // Step 3: Render JSX with event
   return (
     <div style={{ textAlign: "center", marginTop: "50px" }}>
       <h1>React Event Handling Example</h1>
       <p>{message}</p>
       <button onClick={handleClick}>Click Me</button>
+
+            <button onClick={handleClick2}>event</button>
+
     </div>
   );
 }
